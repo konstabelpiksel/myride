@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bucca Three JS</title>
+	<style>
+		body { 
+			margin: 0 auto; 
+			background-color: #040720;
+		}
+	</style>
+</head>
+<body>
+	<script src="./js/three.min.js"></script>
+	<script src="./js/GLTFLoader.js"></script>
+	<script src="./js/OrbitControls.js"></script>
+	<script src="./js/GridHelper.js"></script>
+	
+	<script>
+
+//RENDERER
+const renderer = new THREE.WebGLRenderer({
+  alpha: true,
+  antialias: true
+});
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+//CONSTRUCT SCENE
+const scene = new THREE.Scene();
+
+//SETUP CAMERA
+camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 1000 );
+//camera.position.set(0, 10, 15);
+camera.lookAt( scene.position );
+
+//CONTROLS
+const controls = new THREE.OrbitControls( camera, renderer.domElement );
+controls.enableDamping = true; 
+controls.dampingFactor = 0.05;
+controls.screenSpacePanning = false;
+
+camera.position.set( 0, 10, 15 );
+controls.update();
+
+
+//LIGHTING
+var bucca_color  = '#FEFEFE',
+    ambientLight  = new THREE.AmbientLight( '#f2f2f2' ),
+    hemiLight     = new THREE.HemisphereLight( bucca_color, bucca_color, 0 ),
+    light         = new THREE.PointLight( bucca_color, 1, 100 );
+
+hemiLight.position.set( 0, 50, 0 );
+light.position.set( 0, 20, 10 );
+
+scene.add( ambientLight );
+scene.add( hemiLight );
+scene.add( light );
+
+
+//HELPERS
+var axisHelper = new THREE.AxesHelper( 1.25 );
+//scene.add( axisHelper );
+const size = 3;
+const divisions = 10;
+const gridHelper = new THREE.GridHelper( size, divisions );
+scene.add( gridHelper );
+
+
+//ANIMATE
+function animate() {
+	requestAnimationFrame(animate);
+	controls.update();
+  	renderer.render( scene, camera );
+}
+
+animate();
+
+// Window Resizing
+
+window.addEventListener( 'resize', function () {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  animate();
+}, false );
+
+
+/////////////////////////////////////////
+// Object Loader
+/////////////////////////////////////////
+
+const loader = new THREE.GLTFLoader();
+loader.load( './glb/buccariderv3.glb', function (gltf){
+	scene.add( gltf.scene );
+	//gltf.animations; // Array<THREE.AnimationClip>
+	gltf.scene; // THREE.Group
+	gltf.scenes; // Array<THREE.Group>
+	gltf.cameras; // Array<THREE.Camera>
+	gltf.asset; // Object
+	},
+	// called while loading is progressing
+	function ( xhr ) {
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' )
+	},
+	// called when loading has errors
+	function ( error ) {
+		console.log( 'An error happened' + error );
+	}
+);
+
+
+	</script>
+</body>
+</html>
