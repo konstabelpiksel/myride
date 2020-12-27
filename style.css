@@ -1,6 +1,7 @@
-body{
+    body{
     		overflow:hidden;	
 		}
+
 		#sky, #night, #canvas{
     		position:absolute;
     		top:0px;
@@ -10,8 +11,32 @@ body{
     		width:100%;
 		}
 
+
     #canvas{
       z-index:6;
+    }
+
+    #card{
+      width:220px;
+      bottom: 0;
+      left: 50%;
+      margin-left: -110px;
+      position: absolute;
+      height:240px;
+      text-align: center;
+      z-index:7;
+    }
+
+    #card a:active, a:link, a:hover, a:visited{
+      margin: 0px;
+      padding: 0.8em;
+      padding-left: 3em;
+      padding-right: 3em;
+      text-decoration: none;
+      background-color: #bb2020;
+      font-family: Helvetica, sans-serif;
+      font-size: 0.7em;
+      color:#fff;
     }
 		
 		#sky{
@@ -23,7 +48,7 @@ body{
 
 		#sun{
     		position:absolute;
-    		left:20%;
+    		left:30%;
     		top:10%;
     		width:150px;
     		height:152px;
@@ -43,10 +68,10 @@ body{
 
 		#moon{
    		 	position:absolute;
-    		left:75%;
+    		left:70%;
     		top:10%;
-    		width:168px;
-    		height:168px;
+    		width:150px;
+    		height:150px;
     		background:transparent url(./img/moon.png) no-repeat center center;
     		z-index:4;
     		opacity:0;
@@ -66,11 +91,11 @@ body{
 
 
 		@keyframes mymovesun {
- 	 		0% {top: 10%; left: 20%;}
-  			25% {top: 10%; left: 20%;}
-  			60% {top: 120%; left: 50%;}
-  			75% {top: 120%; left: 50%;}
-  			100% {top: 10%; left: 20%;}
+ 	 		0% {top: 10%;}
+  			25% {top: 10%;}
+  			60% {top: 120%;}
+  			75% {top: 120%;}
+  			100% {top: 10%;}
 		}
 
 		@keyframes mymovenight {
