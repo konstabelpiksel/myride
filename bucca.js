@@ -50,6 +50,8 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.target.set(0,6,0);
 //controls.minDistance(1);
 //controls.maxDistance(8);
+controls.enableDamping = true; 
+controls.dampingFactor = 0.05;
 controls.update();
 
 //CREATE GLOBE
