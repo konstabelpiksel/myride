@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Buccahati V1</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<div id="canvas"></div>
+	<div id="canvas"></div>	
 	<div id="sky"></div>
 	<div id="sun"></div>
 	<div id="night"></div>
 	<div id="moon"></div>
+	
 	<div id="card">
 		<img src="./img/motologo.png" width="100%"/>
 		<a href="https://web.facebook.com/konstabel.piksel.3/">KONSTABEL PIKSEL &copy; 2020</a>
+	</div>
+	<div id="audioplayer">
+		<audio id="audio" src="./audio/bib3.mp3" loop></audio>
+		<img src="./img/audio.png" onclick="playaudio()" />
 	</div>
 	
 
@@ -20,7 +26,12 @@
 <script src="./js/three.min.js"></script>
 <script src="./js/OrbitControls.js"></script>
 <script src="./js/GLTFLoader.js"></script>
-<script src="./js/GridHelper.js"></script>
 <script type="text/javascript" src="bucca.js"></script>
+<script type="text/javascript">
+	function playaudio(){
+		let audio=document.getElementById('audio');
+		audio.play();
+	}
+</script>
 
 </html>

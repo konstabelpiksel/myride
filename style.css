@@ -16,6 +16,18 @@
       z-index:6;
     }
 
+    #audioplayer{
+      width:40px;
+      height:40px;
+      left:100%;
+      position: absolute;
+      margin-left: -60px;
+      text-align: center;
+      z-index: 8;
+      text-decoration: none;
+      color:#fff;
+    }
+
     #card{
       width:220px;
       bottom: 0;
